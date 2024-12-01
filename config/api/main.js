@@ -1,3 +1,3 @@
-const ROOT_URL = "https://kriptokyng.com/api";
-export const mainAPIConfig = {  ROOT_URL,
+export const mainAPIConfig = {
+    ROOT_URL: "https://kriptokyng.com/api"
 };

@@ -8,6 +8,10 @@ const getLastPoolBlockTime = (t) => {
 };
 
 export function LastBlocks({ blocks }) {
+  if (!blocks || blocks.length === 0) {
+    return <div>No blocks available</div>; // Show a message if blocks are empty or null
+  }
+
   return (
     <div className="container mx-auto row mt-3">
       <center>
@@ -27,13 +31,14 @@ export function LastBlocks({ blocks }) {
             </tr>
           </thead>
           <tbody>
-            {blocks.map((block) => (
-              <tr>
+            {blocks.map((block, index) => (
+              <tr key={index}>
                 <td>
                   <Image
-                        src={`/images/coins/${block.poolId.toLowerCase()}.png`}
-                        alt="coin Log"
-                        className="pool-logo"></Image>
+                    src={`/images/coins/${block.poolId.toLowerCase()}.png`}
+                    alt="coin Log"
+                    className="pool-logo"
+                  />
                 </td>
                 <td>{getLastPoolBlockTime(block.created)}</td>
                 <td>
@@ -50,7 +55,6 @@ export function LastBlocks({ blocks }) {
                 <td>
                   {(block.confirmationProgress.toFixed(2) * 100).toFixed(0)}%
                 </td>
-
                 <td>{block.reward}</td>
               </tr>
             ))}
