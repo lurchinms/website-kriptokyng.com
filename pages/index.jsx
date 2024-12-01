@@ -5,6 +5,11 @@ import { PoolList } from "../components/pools";
 
 import { getNews } from "../util/api/internal/news";
 import { getBlocks } from "../util/api/public/blocks";
+export async function getServerSideProps() {
+  const blocks = await getBlocks();
+  const news = await getNews();
+  return { props: { blocks, news: news.slice(0, 6) } };
+}
 
 export default function Home({ news, blocks }) {
   return (
@@ -19,10 +24,4 @@ export default function Home({ news, blocks }) {
       <LatestNews news={news} />
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const blocks = await getBlocks();
-  const news = await getNews();
-  return { props: { blocks, news: news.slice(0, 6) } };
 }
