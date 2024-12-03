@@ -15,8 +15,8 @@ function MyApp({ Component, pageProps }) {
   const [showSupport, setShowSupport] = useState(false);
   return (
     <>
-      <Navigation openSupport={() => setShowSupport(true)} />
       <Ticker />
+      <Navigation openSupport={() => setShowSupport(true)} />
       <Support show={showSupport} onHide={() => setShowSupport(false)} />
       <Component {...pageProps} />
       <Footer />

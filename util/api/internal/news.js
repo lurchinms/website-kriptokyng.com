@@ -25,9 +25,12 @@ export async function getNews() {
 
   if (req.status === 200) {
     const data = await req.json();
-    redis.set("news_cache", JSON.stringify(data.data), {
-      EX: 60 * NEWS_EXPIRY_MINUTES,
-    });
+    redis.set(
+      "news_cache",
+      JSON.stringify(data.data),
+      "EX",
+      60 * NEWS_EXPIRY_MINUTES
+    );
     return data.data;
   }
 
