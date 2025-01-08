@@ -1,6 +1,6 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import { useState, useRef } from "react";
-
+import { useTranslation } from "../../../src/context/TranslationContext";
 export function Support(props) {
   const [emailBody, setEmailBody] = useState({
     name: "",
@@ -29,7 +29,17 @@ export function Support(props) {
       }
     }
   };
-
+  const {
+    ContactSupport,
+    YourName,
+    providename,
+    Emailaddress,
+    inputemail,
+    YourMessage,
+    inputmessage,
+    Close,
+    Send,
+  } = useTranslation();
   return (
     <Modal
       {...props}
@@ -39,7 +49,7 @@ export function Support(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Contact Support
+          {ContactSupport}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -51,7 +61,7 @@ export function Support(props) {
           onSubmit={handleSubmit}
         >
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Your Name</Form.Label>
+            <Form.Label>{YourName}</Form.Label>
             <Form.Control
               required
               type="text"
@@ -63,11 +73,11 @@ export function Support(props) {
               autoFocus
             />
             <Form.Control.Feedback type="invalid">
-              Please provide a name.
+              {providename}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Your Email address</Form.Label>
+            <Form.Label>{Emailaddress}</Form.Label>
             <Form.Control
               required
               type="email"
@@ -78,11 +88,11 @@ export function Support(props) {
               }}
             />
             <Form.Control.Feedback type="invalid">
-              Please input a valid email.
+              {inputemail}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Your Message</Form.Label>
+            <Form.Label>{YourMessage}</Form.Label>
             <Form.Control
               required
               value={emailBody.message}
@@ -93,17 +103,17 @@ export function Support(props) {
               rows={3}
             />
             <Form.Control.Feedback type="invalid">
-              Please input a message.
+              {inputmessage}
             </Form.Control.Feedback>
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="danger" onClick={props.onHide}>
-          Close
+          {Close}
         </Button>
         <Button type="submit" form="support-email">
-          Send
+          {Send}
         </Button>
       </Modal.Footer>
     </Modal>

@@ -1,7 +1,5 @@
-// TODO: refactor this file
-
 import { Fragment, useEffect, useState } from "react";
-
+import { useTranslation } from "../../src/context/TranslationContext";
 import Col from "react-bootstrap/Col";
 import Collapse from "react-bootstrap/Collapse";
 import Form from "react-bootstrap/Form";
@@ -93,6 +91,22 @@ const getLastPoolBlockTime = (t) => {
 };
 
 export function PoolList() {
+  const {
+    payOut,
+    poolHashrate,
+    networkHashrate,
+    algorithm,
+    poolBlock,
+    coinInformation,
+    difficulty,
+    poolAddress,
+    lastPoolBlock,
+    roundEffort,
+    connections,
+    totalPaid,
+    placing,
+    name,
+  } = useTranslation();
   const refreshRate = 300;
 
   const [rowData, setRowData] = useState([]);
@@ -105,13 +119,15 @@ export function PoolList() {
     performance: null,
     ports: [],
   });
-
   useEffect(() => {
-    const cachedPools = JSON.parse(
-      window.localStorage.getItem("pools") ?? "[]"
-    );
+    let cachedPools = [];
+    try {
+      cachedPools = JSON.parse(window.localStorage.getItem("pools") ?? "[]");
+    } catch (error) {
+      console.error("Error accessing localStorage:", error);
+    }
 
-    if (cachedPools.lenght) {
+    if (cachedPools.length) {
       setRowData(cachedPools);
       setFilteredPools(cachedPools);
     } else {
@@ -129,8 +145,38 @@ export function PoolList() {
     setRowData(pools);
     setFilteredPools(pools);
 
-    window.localStorage.setItem("pools", JSON.stringify(pools));
+    try {
+      window.localStorage.setItem("pools", JSON.stringify(pools));
+    } catch (error) {
+      console.error("Error setting localStorage:", error);
+    }
   };
+
+  // useEffect(() => {
+  //   const cachedPools = JSON.parse(
+  //     window.localStorage.getItem("pools") ?? "[]"
+  //   );
+
+  //   if (cachedPools.lenght) {
+  //     setRowData(cachedPools);
+  //     setFilteredPools(cachedPools);
+  //   } else {
+  //     fetchData();
+  //   }
+  // }, []);
+
+  // const fetchData = async () => {
+  //   const pools = await getPools();
+
+  //   for (let i = 0; i < pools.length; i++) {
+  //     pools[i].performance = await getPoolPerformance(pools[i].id);
+  //   }
+
+  //   setRowData(pools);
+  //   setFilteredPools(pools);
+
+  //   window.localStorage.setItem("pools", JSON.stringify(pools));
+  // };
 
   const onChangeQuery = (query) => {
     setSearchQuery(query);
@@ -178,7 +224,7 @@ export function PoolList() {
             onChange={(e) => {
               onChangeQuery(e.target.value);
             }}
-            placeholder="Search For a Crypto Currency.."
+            placeholder={placing}
           />
         </div>
       </div>
@@ -188,13 +234,17 @@ export function PoolList() {
             <thead>
               <tr>
                 <th scope="col">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name}
                 </th>
-                <th scope="col">Pool Hashrate</th>
-                <th scope="col">Network Hashrate</th>
-                <th scope="col">Algorithm</th>
-                <th scope="col">Pool Block</th>
-                <th scope="col">Coin Information</th>
+                <th scope="col">{payOut}</th>
+                <th scope="col">{poolHashrate}</th>
+                <th scope="col">{networkHashrate}</th>
+
+                <th scope="col">{algorithm}</th>
+                <th scope="col">{poolBlock}</th>
+                <th scope="col">
+                  {coinInformation.blocks} | {coinInformation.payments}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -222,6 +272,7 @@ export function PoolList() {
                       />{" "}
                       {r.coin.canonicalName}
                     </td>
+                    <td>{(r.paymentProcessing.payoutScheme)}</td>
                     <td>{fmtHash(r.poolStats.poolHashrate, 2, "H/s")}</td>
                     <td>{fmtHash(r.networkStats.networkHashrate, 2, "H/s")}</td>
                     <td>{r.coin.algorithm}</td>
@@ -233,7 +284,7 @@ export function PoolList() {
                           r.id
                         }&coinSymbol=${r.coin.symbol}`}
                       >
-                        Blocks
+                        {coinInformation.blocks}
                       </Link>{" "}
                       |{" "}
                       <Link
@@ -242,7 +293,7 @@ export function PoolList() {
                           r.id
                         }&coinSymbol=${r.coin.symbol}#pool-payments`}
                       >
-                        Payments
+                        {coinInformation.payments}
                       </Link>{" "}
                     </td>
                   </tr>
@@ -267,7 +318,7 @@ export function PoolList() {
                                         datasets: [
                                           {
                                             maintainAspectRatio: false,
-                                            label: "Pool Hashrate",
+                                            label: poolHashrate,
                                             data: r.performance.map(
                                               (p) => p.poolHashrate
                                             ),
@@ -277,11 +328,8 @@ export function PoolList() {
                                               return customFillGradient(
                                                 context,
                                                 {
-                                                  // put colors in here,
-                                                  // first goes the color, then the percentage
                                                   "#abc2b3": 0,
                                                   "#ffffff": 0.8,
-                                                  // the last argument is the degree.
                                                 },
                                                 190
                                               );
@@ -302,7 +350,7 @@ export function PoolList() {
                               <div className="col-lg-6 col-md-12">
                                 <Row>
                                   <small className="data-tag">
-                                    Pool Address:{" "}
+                                    {poolAddress}{" "}
                                   </small>
                                   {currentRowInfo.ports &&
                                     currentRowInfo.ports.map((port) => (
@@ -321,7 +369,7 @@ export function PoolList() {
                                             fontSize: 12,
                                           }}
                                         >
-                                          Difficulty: {port.difficulty}
+                                          {difficulty}: {port.difficulty}
                                         </p>
                                       </>
                                     ))}
@@ -329,7 +377,7 @@ export function PoolList() {
                                 <Row>
                                   <Col>
                                     <small className="data-tag">
-                                      Difficulty:
+                                      {difficulty}:
                                     </small>
                                     <p className="data">
                                       {fmtHash(
@@ -341,7 +389,7 @@ export function PoolList() {
                                   </Col>
                                   <Col>
                                     <small className="data-tag">
-                                      Network Hashrate:
+                                      {networkHashrate}:
                                     </small>
                                     <p className="data">
                                       {fmtHash(
@@ -376,7 +424,7 @@ export function PoolList() {
                                   </Col>
                                   <Col>
                                     <small className="data-tag">
-                                      Last Pool Block:
+                                      {lastPoolBlock}:
                                     </small>
                                     <p className="data">
                                       {getLastPoolBlockTime(
@@ -388,7 +436,7 @@ export function PoolList() {
                                 <Row>
                                   <Col>
                                     <small className="data-tag">
-                                      Round Effort:
+                                      {roundEffort}:
                                     </small>
                                     <p className="data">
                                       {r.poolEffort.toFixed(1)}%
@@ -396,7 +444,7 @@ export function PoolList() {
                                   </Col>
                                   <Col>
                                     <small className="data-tag">
-                                      Connections:
+                                      {connections}:
                                     </small>
                                     <p className="data">
                                       {r.networkStats.connectedPeers}
@@ -404,7 +452,7 @@ export function PoolList() {
                                   </Col>
                                   <Col>
                                     <small className="data-tag">
-                                      Total Paid:
+                                      {totalPaid}:
                                     </small>
                                     <p className="data">
                                       {fmtHash(r.totalPaid, 2, "")}{" "}

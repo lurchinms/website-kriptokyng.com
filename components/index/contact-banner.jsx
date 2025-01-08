@@ -1,4 +1,7 @@
+import { useTranslation } from "../../src/context/TranslationContext";
+
 export default function ContactBanner() {
+  const { projectmind, helpyou } = useTranslation();
   return (
     <div
       style={{
@@ -10,8 +13,8 @@ export default function ContactBanner() {
       }}
     >
       <div>
-        <p> Have a project in mind</p>
-        <h3>Let me help you</h3>
+        <p> {projectmind}</p>
+        <h3>{helpyou}</h3>
       </div>
     </div>
   );

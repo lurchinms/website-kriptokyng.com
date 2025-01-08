@@ -22,7 +22,7 @@ export function BlockData({ data }) {
           </thead>
           <tbody>
             {data.map((block) => (
-              <tr>
+              <tr key={block.id}>
                 <td>{toCurrentTimeZone(block.created)}</td>
                 <td>
                   <a

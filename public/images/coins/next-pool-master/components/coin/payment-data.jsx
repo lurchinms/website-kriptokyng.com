@@ -22,7 +22,7 @@ export function PaymentData({ data }) {
           </thead>
           <tbody>
             {data.map((payment) => (
-              <tr>
+              <tr key={payment.id}>
                 <td>{toCurrentTimeZone(payment.created)}</td>
                 <td>{payment.address}</td>
                 <td>

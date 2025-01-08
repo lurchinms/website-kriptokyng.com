@@ -1,57 +1,69 @@
+import { useTranslation } from "../../../src/context/TranslationContext";
+
 export function Footer() {
+  const {
+    title,
+    description,
+    addresstitle,
+    addressname,
+    addressstreet,
+    addresscity,
+    addresscoordinates,
+    quickLinks,
+    donations,
+  } = useTranslation();
+
   return (
     <footer className="site-footer">
       <div className="container">
         <div className="row">
           <div className="col-sm-6 col-md-6">
-            <h6>About</h6>
-            <p className="text-justify ">
-              KriptoKyng Pool was established in 2020 to provide the community
-              of miner a reliable and secure mining site. This pool is designed
-              in C++ and provides Ultra-low-latency and multi-threaded Stratums.
-              The payments are made to the wallet address that you provide in
-              your miner&apos;s user field every 10 minutes.
-            </p>
+            <h6>{title}</h6>
+            <p className="text-justify">{description}</p>
           </div>
           <div className="col-xs-6 col-md-2">
-            <h6>Quick Links</h6>
+            <h6>{quickLinks?.title}</h6>
             <ul className="footer-links">
               <li>
-                <a href="pool">PoolList</a>
+                <a href={quickLinks?.links[0].href}>
+                  {quickLinks?.links[0].text}
+                </a>
               </li>
               <li>
-                <a href="wallet">Wallet Information</a>
+                <a href={quickLinks?.links[1].href}>
+                  {quickLinks?.links[1].text}
+                </a>
               </li>
               <li>
-                <a href="cryptonews">CryptoNews</a>
+                <a href={quickLinks?.links[2].href}>
+                  {quickLinks?.links[2].text}
+                </a>
               </li>
               <li>
-                <a href="howto">How to mine</a>
+                <a href={quickLinks?.links[3].href}>
+                  {quickLinks?.links[3].text}
+                </a>
               </li>
               <li>
-                <a href="api_information">API</a>
+                <a href={quickLinks?.links[4].href}>
+                  {quickLinks?.links[4].text}
+                </a>
               </li>
               <li>
-                <a href="privacy_policy/">Privacy Policy</a>
+                <a href={quickLinks?.links[5].href}>
+                  {quickLinks?.links[5].text}
+                </a>
               </li>
             </ul>
           </div>
+
           <div className="col-sm-6 col-md-2">
-            <h6>Address</h6>
-            <p className="address">KriptoKyng LLC</p>
-            <p className="address">10675 E. Bay Tree Dr.</p>
-            <p className="address">Gulfport, MS. 39503 U.S.A.</p>
-            <p className="address">30.4449235,-89.0598622</p>
+            <h6>{addresstitle}</h6>
+            <p className="address">{addressname}</p>
+            <p className="address">{addressstreet}</p>
+            <p className="address">{addresscity}</p>
+            <p className="address">{addresscoordinates}</p>
           </div>
-          {/* <div className="col-sm-6 col-md-2">
-              <Image
-                src="images/footer-logo.png"
-                alt="KriptoKyng Pool"
-                width={125}
-                height={125}
-                opacity={0.6}
-              />
-            </div> */}
         </div>
       </div>
       <div className="container">
@@ -61,10 +73,10 @@ export function Footer() {
         <div className="row">
           <div className="col-md-8 col-sm-6 col-xs-12">
             <p className="copyright-text">
-              Copyright &copy; 2020 All Rights Reserved by
-              <a href="#"> KriptoKyng LLC</a>
+              {donations?.text}
+              <a href="#">{donations?.organization}</a>
             </p>
-            BTC Donations: bc1qzdrg2zh63484392jzjjt5js0nhkl4ldp5ed6n0
+            {donations?.wallet}
           </div>
           <div className="col-md-4 col-sm-6 col-xs-12">
             <ul className="social-icons">
