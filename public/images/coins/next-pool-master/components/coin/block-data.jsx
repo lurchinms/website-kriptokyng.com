@@ -22,7 +22,7 @@ export function BlockData({ data }) {
               <th>{blockHeight}</th>
               <th>{minerAddress}</th>
               <th>{status}</th>
-              <th>ertyui</th>
+              <th>{maturity}</th>
               <th>{reward}</th>
             </tr>
           </thead>

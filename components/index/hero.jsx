@@ -10,9 +10,9 @@ export function Hero() {
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div className="w-100 h-100">
               <div className="d-flex flex-row-reverse miner-fee">
-                {miningFee}
+                mining Fee 7.8%
               </div>
-              <h1 className="logoText">{maintitle}</h1>
+              <h1>{maintitle}</h1>
               <sub-title>{subtitle}</sub-title>
               <br />
               <Button variant="outline-primary" size="sm" href="/pool">

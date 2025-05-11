@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
@@ -7,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setTheme as setThemeRedux } from "../../../src/redux/themeSlice";
 import { useTranslation } from "../../../src/context/TranslationContext";
 import { setLanguage as setLanguageRedux } from "../../../src/redux/languageSlice";
+import { useEffect } from "react";
 
 export function Navigation({ theme, setTheme }) {
   const dispatch = useDispatch();
@@ -14,17 +14,16 @@ export function Navigation({ theme, setTheme }) {
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    dispatch(setThemeRedux(newTheme));
-    document.body.className = newTheme; // Update body class for theme
+    setTheme(newTheme); // Update local state
+    dispatch(setThemeRedux(newTheme)); // Update Redux store
   };
 
   const changeLanguage = (newLanguage) => {
-    dispatch(setLanguageRedux(newLanguage));
+    dispatch(setLanguageRedux(newLanguage)); // Change language in Redux store
   };
 
   useEffect(() => {
-    document.body.className = theme;
+    document.body.className = theme; // Ensure body class matches theme
   }, [theme]);
 
   return (
@@ -51,35 +50,11 @@ export function Navigation({ theme, setTheme }) {
           id="responsive-navbar-nav"
           className="justify-content-md-end"
         >
-          <Nav
-            className={`text-center ${
-              theme === "dark" ? "text-white" : "text-dark"
-            }`}
-          >
-            <Nav.Link
-              className={theme === "dark" ? "text-white" : "text-dark"}
-              href="/"
-            >
-              {home}
-            </Nav.Link>
-            <Nav.Link
-              className={theme === "dark" ? "text-white" : "text-dark"}
-              href="/pool"
-            >
-              {pool}
-            </Nav.Link>
-            <Nav.Link
-              className={theme === "dark" ? "text-white" : "text-dark"}
-              href="/wallet"
-            >
-              {wallet}
-            </Nav.Link>
-            <Nav.Link
-              className={theme === "dark" ? "text-white" : "text-dark"}
-              href="/cryptonews"
-            >
-              {cryptonews}
-            </Nav.Link>
+          <Nav className="text-center">
+            <Nav.Link href="/">{home}</Nav.Link>
+            <Nav.Link href="/pool">{pool}</Nav.Link>
+            <Nav.Link href="/wallet">{wallet}</Nav.Link>
+            <Nav.Link href="/cryptonews">{cryptonews}</Nav.Link>
             <NavDropdown title="Lang" id="nav-dropdown">
               <NavDropdown.Item onClick={() => changeLanguage("english")}>
                 English

@@ -86,33 +86,6 @@ export const options = {
   },
 };
 
-const getPrice = async (name) => {
-  try {
-    if (!name) {
-      console.error("Invalid coin name provided.");
-      return 0.0; // Return default price for invalid input
-    }
-
-    const response = await fetch(
-      `https://api.coingecko.com/api/v3/coins/${name.toLowerCase()}`
-    );
-
-    if (!response.ok) {
-      console.error(`Failed to fetch price for ${name}:`, response.statusText);
-      return 0.0; // Return default price in case of API failure
-    }
-
-    const data = await response.json();
-    console.log("Fetched price data:", data);
-
-    // Safely access nested properties, fallback to 0.0 if missing
-    return data?.market_data?.current_price?.usd || 0.0;
-  } catch (error) {
-    console.error("Error in getPrice:", error);
-    return 0.0; // Return default price in case of error
-  }
-};
-
 const getLastPoolBlockTime = (t) => {
   return t ? moment(moment.utc(t).toDate()).local().fromNow() : "Unavailable";
 };
@@ -128,7 +101,6 @@ export function PoolList() {
     difficulty,
     poolAddress,
     lastPoolBlock,
-    coinPrice,
     roundEffort,
     connections,
     totalPaid,
@@ -164,27 +136,19 @@ export function PoolList() {
   }, []);
 
   const fetchData = async () => {
+    const pools = await getPools();
+
+    for (let i = 0; i < pools.length; i++) {
+      pools[i].performance = await getPoolPerformance(pools[i].id);
+    }
+
+    setRowData(pools);
+    setFilteredPools(pools);
+
     try {
-      const pools = await getPools();
-      console.log("Fetched pools:", pools);
-
-      for (let i = 0; i < pools.length; i++) {
-        console.log("Processing pool:", pools[i].coin.canonicalName);
-
-        pools[i].price = (await getPrice(pools[i].coin.canonicalName)) || 0.0; // Ensure price is always a number
-        pools[i].performance = await getPoolPerformance(pools[i].id);
-      }
-
-      setRowData(pools);
-      setFilteredPools(pools);
-
-      try {
-        window.localStorage.setItem("pools", JSON.stringify(pools));
-      } catch (error) {
-        console.error("Error setting localStorage:", error);
-      }
+      window.localStorage.setItem("pools", JSON.stringify(pools));
     } catch (error) {
-      console.error("Error fetching pool data:", error);
+      console.error("Error setting localStorage:", error);
     }
   };
 
@@ -272,12 +236,12 @@ export function PoolList() {
                 <th scope="col">
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name}
                 </th>
-                <th scope="col">{poolHashrate}</th>
                 <th scope="col">{payOut}</th>
+                <th scope="col">{poolHashrate}</th>
                 <th scope="col">{networkHashrate}</th>
+
                 <th scope="col">{algorithm}</th>
                 <th scope="col">{poolBlock}</th>
-                <th scope="col">{coinPrice}</th>
                 <th scope="col">
                   {coinInformation.blocks} | {coinInformation.payments}
                 </th>
@@ -308,15 +272,11 @@ export function PoolList() {
                       />{" "}
                       {r.coin.canonicalName}
                     </td>
+                    <td>{(r.paymentProcessing.payoutScheme)}</td>
                     <td>{fmtHash(r.poolStats.poolHashrate, 2, "H/s")}</td>
-                    <td>{r.paymentProcessing.payoutScheme}</td>
                     <td>{fmtHash(r.networkStats.networkHashrate, 2, "H/s")}</td>
                     <td>{r.coin.algorithm}</td>
                     <td>{getLastPoolBlockTime(r.lastPoolBlockTime)}</td>
-                    <td>
-                      ${r.price !== undefined ? r.price.toFixed(2) : "0.00"}
-                    </td>
-
                     <td>
                       <Link
                         className="links"

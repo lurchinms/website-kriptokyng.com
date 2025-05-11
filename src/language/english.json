@@ -73,6 +73,7 @@
   },
 
   "name": "name",
+  "payOut": "payOut",
   "poolHashrate": "poolHashrate",
   "networkHashrate": "networkHashrate",
   "algorithm": "algorithm",
@@ -109,7 +110,7 @@
   "walletInfoSample": "This is a sample of wallet information.",
   "TopMiners": "Top 50 Miners",
   "LatestNews": "Latest News",
-  "coinPrice": "coinPrice",
+
   "lastMintedBlocks": "Last Minted Blocks",
   "headers": {
     "coin": "Coin",

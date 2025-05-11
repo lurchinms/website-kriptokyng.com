@@ -71,7 +71,7 @@
   "walletInfoSample": "Esta es una muestra de información de la billetera.",
   "TopMiners": "Los 50 mejores mineros",
   "LatestNews": "Últimas noticias",
-  "coinPrice": "Precio de la moneda",
+
   "lastMintedBlocks": "Últimos Bloques Minados",
   "headers": {
     "coin": "Moneda",

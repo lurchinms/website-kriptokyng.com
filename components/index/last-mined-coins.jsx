@@ -1,55 +1,23 @@
-import React from "react";
 import Table from "react-bootstrap/Table";
 import Image from "react-bootstrap/Image";
 import moment from "moment";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import { toCurrentTimeZone } from "../../util/time";
 import { useTranslation } from "../../src/context/TranslationContext";
-
 const getLastPoolBlockTime = (t) => {
   return t ? moment(moment.utc(t).toDate()).local().fromNow() : "Unavailable";
 };
 
-export function LastBlocks({ blocks, theme }) {
+export function LastBlocks({ blocks }) {
   const { lastMintedBlocks, headers } = useTranslation();
-
-  const renderStatusArc = (progress) => (
-    <div style={{ width: 50, height: 50, margin: "0 auto" }}>
-      <CircularProgressbar
-        value={progress}
-        text={`${progress.toFixed(0)}%`}
-        styles={buildStyles({
-          textSize: "28px",
-          pathColor: "#f7b801",
-          textColor: theme === "dark" ? "#E69706" : "#E69706", // Text color based on theme
-          trailColor: theme === "dark" ? "#E69706" : "#E69706", // Trail color based on theme
-        })}
-      />
-    </div>
-  );
-
   return (
     <div className="container mx-auto row mt-3">
       <center>
-        <h1
-          className={`display-5 ${
-            theme === "dark" ? "text-white" : "text-dark"
-          }`}
-        >
+        <h1 className="display-5" text-info>
           {lastMintedBlocks}
         </h1>
       </center>
-      <div
-        className={`glassfilter mx-auto p-3 mb-5 ${
-          theme === "dark" ? "dark-mode" : "light-mode"
-        }`}
-      >
-        <Table
-          size="md"
-          responsive
-          style={{ width: "100%" }}
-          className={theme === "dark" ? "text-white" : "text-dark"}
-        >
+      <div className="glassfilter mx-auto p-3 mb-5">
+        <Table size="md" responsive style={{ width: "100%" }}>
           <thead>
             <tr>
               <th>{headers?.coin}</th>
@@ -69,7 +37,7 @@ export function LastBlocks({ blocks, theme }) {
                     src={`/images/coins/${block.poolId.toLowerCase()}.png`}
                     alt="coin Log"
                     className="pool-logo"
-                  />
+                  ></Image>
                 </td>
                 <td>{getLastPoolBlockTime(block.created)}</td>
                 <td>
@@ -77,16 +45,16 @@ export function LastBlocks({ blocks, theme }) {
                     href={block.infoLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={theme === "dark" ? "text-light" : "text-dark"}
                   >
                     {block.blockHeight}
                   </a>
                 </td>
                 <td>{block.miner}</td>
                 <td>{block.status}</td>
-                <td className={`maturity-text`}>
-                  {renderStatusArc(block.confirmationProgress * 100)}
+                <td>
+                  {(block.confirmationProgress.toFixed(2) * 100).toFixed(0)}%
                 </td>
+
                 <td>{block.reward}</td>
               </tr>
             ))}

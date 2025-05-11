@@ -1,6 +1,7 @@
-.logoText{
-  font-family: 'Whisper', 'Red Hat Display', 'Open Sans', sans-serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Whisper&display=swap");
+
 body.dark {
   background-image: url("https://wallpaperaccess.com/full/211285.jpg");
   background-attachment: fixed;
@@ -21,15 +22,13 @@ body.dark {
 
 body.dark .display-5 {
   color: #fff;
-  font-size: 1.8rem !important;
+  font-size: rem !important;
 }
 
 body.dark p {
   color: rgb(249, 240, 240);
 }
-body.dark  .hehe {
-  font-family: 'Open Sans', 'Red Hat Display', 'Whisper', sans-serif;
-}
+
 body.dark a {
   color: rgb(213, 150, 33) !important;
   text-decoration: none !important;
@@ -682,65 +681,6 @@ body.light {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Prevent horizontal scroll issues on small devices */
-}
-body.light {
-  background-color: #f9f9f9;
-  color: #000;
-}
-
-body.dark {
-  background-color: #333;
-  color: #fff;
-}
-
-.countdown-timer {
-  border-radius: 50%;
-  padding: 10px;
-}
-
-.countdown-timer.light {
-  background: #f9f9f9;
-  color: #000;
-}
-
-.countdown-timer.dark {
-  background: #333;
-  color: #fff;
-}
-
-.countdown-timer .timer-text {
-  text-align: center;
-}
-
-.countdown-timer .timer-minutes {
-  font-size: 16px;
-}
-
-.countdown-timer .timer-label {
-  font-size: 10px;
-}
-
-.maturity-text.light {
-  color: #000;
-}
-
-.maturity-text.dark {
-  color: #fff;
-}
-
-/* Handling Maturity text color */
-.maturity-text {
-  color: inherit; /* Default color depending on the theme */
-}
-
-/* Dark mode specific styles */
-body.dark .maturity-text {
-  color: #fff; /* White text color in dark mode */
-}
-
-/* Light mode specific styles */
-body.light .maturity-text {
-  color: #000; /* Black text color in light mode */
 }
 
 @media (max-width: 812px) {

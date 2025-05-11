@@ -42,6 +42,7 @@
   "networkHashrate": "Хешрейт сети",
   "algorithm": "алгоритм",
   "poolBlock": "блок бассейна",
+  "Block Time": "Время блока",
   "coinInformation": {
     "blocks": "блоки",
     "payments": "платежи"
@@ -149,7 +150,6 @@
   "coin": "Монета",
   "price": "Цена",
   "change24h": "Изменение за 24 ч",
-  "coinPrice": "Цена монеты",
   "marketCap": "Рыночная капитализация",
   "how_we_use": {
     "header": " Как Мы Используем Ваши Личные Данные",
