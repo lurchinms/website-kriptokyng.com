@@ -200,7 +200,7 @@ export function PoolList() {
             <tbody>
               {filteredPools.map((r, i) => (
                 <Fragment key={i}>
-                  <tr>
+                  <tr key={i}>
                     <td>
                       <i
                         className="fas fa-chevron-right"

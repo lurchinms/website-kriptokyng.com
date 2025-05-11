@@ -229,16 +229,18 @@ export function PoolList() {
                     <td>
                       <Link
                         className="links"
-                        href={`/coin/${r.coin.canonicalName.toLowerCase()}?blockID=${r.id
-                          }&coinSymbol=${r.coin.symbol}`}
+                        href={`/coin/${r.coin.canonicalName.toLowerCase()}?blockID=${
+                          r.id
+                        }&coinSymbol=${r.coin.symbol}`}
                       >
                         Blocks
                       </Link>{" "}
                       |{" "}
                       <Link
                         className="links"
-                        href={`/coin/${r.coin.canonicalName.toLowerCase()}?blockID=${r.id
-                          }&coinSymbol=${r.coin.symbol}#pool-payments`}
+                        href={`/coin/${r.coin.canonicalName.toLowerCase()}?blockID=${
+                          r.id
+                        }&coinSymbol=${r.coin.symbol}#pool-payments`}
                       >
                         Payments
                       </Link>{" "}

@@ -1,25 +1,39 @@
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 export function RefreshTimer({ time, onComplete }) {
+  const theme = document.body.classList.contains("dark") ? "dark" : "light";
+
   const children = (remainingTime) => {
-    if (remainingTime == 0) {
-      return `↻`;
+    if (remainingTime === 0) {
+      return <div className={`timer-text ${theme}`}>↻</div>;
     }
+
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
+
     return (
-      <div style={{ textAlign: "center", color: "#fff" }}>
-        <div style={{ fontSize: 16 }}>{minutes || seconds}</div>
-        <div style={{ fontSize: 10 }}>{minutes ? "minutes" : "seconds"}</div>
+      <div className={`timer-text ${theme}`}>
+        <div className="timer-minutes">{minutes || seconds}</div>
+        <div
+          className={`timer-label ${minutes ? "minutes-label" : ""}`}
+          style={minutes ? { color: "yellow" } : {}}
+        >
+          {minutes ? "minutes" : "seconds"}
+        </div>
       </div>
     );
   };
+
   return (
-    <div className="countdown-timer">
+    <div
+      className={`countdown-timer ${
+        theme === "dark" ? "dark-mode" : "light-mode"
+      }`}
+    >
       <CountdownCircleTimer
         isPlaying
         duration={time}
-        colors={["#F7B801", "#A30000", "#A30000"]}
+        colors={"#FF9500"}
         colorsTime={[6, 3, 0]}
         size={65}
         strokeWidth={4}

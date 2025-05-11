@@ -11,7 +11,9 @@ export function LastBlocks({ blocks }) {
   return (
     <div className="container mx-auto row mt-3">
       <center>
-        <h1 className="display-5" text-info>Last Minted Blocks</h1>
+        <h1 className="display-5" text-info>
+          Last Minted Blocks
+        </h1>
       </center>
       <div className="glassfilter mx-auto p-3 mb-5">
         <Table size="md" responsive style={{ width: "100%" }}>
@@ -28,12 +30,13 @@ export function LastBlocks({ blocks }) {
           </thead>
           <tbody>
             {blocks.map((block) => (
-              <tr>
+              <tr key={block.id}>
                 <td>
                   <Image
-                        src={`/images/coins/${block.poolId.toLowerCase()}.png`}
-                        alt="coin Log"
-                        className="pool-logo"></Image>
+                    src={`/images/coins/${block.poolId.toLowerCase()}.png`}
+                    alt="coin Log"
+                    className="pool-logo"
+                  ></Image>
                 </td>
                 <td>{getLastPoolBlockTime(block.created)}</td>
                 <td>

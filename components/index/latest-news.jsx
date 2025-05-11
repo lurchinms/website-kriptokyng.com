@@ -1,13 +1,14 @@
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-
+import { useTranslation } from "../../src/context/TranslationContext";
 import { NewsGridItem } from "../news/news-grid-item";
 
 export function LatestNews({ news }) {
+  const { LatestNews } = useTranslation();
   return (
     <div className="container mx-auto mt-3">
       <center>
-        <h1 className="display-5">Latest News</h1>
+        <h1 className="display-5">{LatestNews}</h1>
       </center>
       <Row>
         {news.map((n) => (

@@ -1,10 +1,15 @@
 import { createClient } from "redis";
-import { redisConfig } from "../../config/redis";
 
-const client = createClient({ url: redisConfig.URL });
-
-client.on("error", (err) => {
-  throw new Error(err);
+const client = createClient({
+  socket: {
+    host: "127.0.0.1",
+    port: 6379,
+  },
 });
 
-export const redis = await client.connect();
+client.on("error", (err) => {
+  console.error("Redis client error:", err);
+});
+
+await client.connect();
+export const redis = client;

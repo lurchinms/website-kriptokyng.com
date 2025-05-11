@@ -3,15 +3,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Whisper&display=swap");
 
 body {
-  background-image: url("https://wallpaperaccess.com/full/211285.jpg");
   background-attachment: fixed;
-  -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
-  height: 100vh;
+  height: 100%; /* Full viewport height */
+  width: 100%; /* Full viewport width */
   font-size: 16px;
-  font-family: "Open+Sans", sans-serif !important;
-  color: #fff !important;
+  font-family: "Open Sans", sans-serif !important;
+  background-image: url("https://wallpaperaccess.com/full/211285.jpg"); /* Background image */
+  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.5); /* Light overlay for better readability */
+  filter: brightness(1.2) contrast(1.1); /* Enhance brightness and contrast for a light mode feel */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll issues on small devices */
 }
 
 @media (max-width: 812px) {
@@ -21,16 +25,16 @@ body {
 }
 
 .display-5 {
-  color: #2252d4;
+  color: #0c0b0b;
   font-size: 1.8rem !important;
 }
 
 p {
-  color: rgb(249, 240, 240);
+    color: #0c0b0b;
 }
 
 a {
-  color: rgb(213, 150, 33) !important;
+  color: rgb(230, 151, 6) !important;
   text-decoration: none !important;
 }
 
@@ -39,7 +43,7 @@ ul {
 }
 
 a:hover {
-  color: rgb(169, 162, 148) !important;
+    color: #0c0b0b !important;
 }
 
 .row {
@@ -48,34 +52,34 @@ a:hover {
 
 .data-tag {
   font-size: small;
-  color: rgb(256, 256, 256);
+  color: #0c0b0b ;
   opacity: 0.7;
 }
 
 .data {
   font-size: large;
-  color: rgb(234, 214, 144);
+  color: #0c0b0b 
 }
 
 .Navbar {
-  background: rgb(3, 2, 7);
+  background: rgb(248, 248, 250);
   background: linear-gradient(
     90deg,
-    rgba(3, 2, 7, 1) 0%,
-    rgba(13, 18, 24, 1) 35%,
-    rgba(16, 19, 25, 1) 60%,
-    rgba(13, 15, 20, 1) 78%,
-    rgba(10, 11, 14, 1) 100%
+    rgb(248, 248, 250) 0%,
+    rgb(248, 248, 250) 35%,
+    rgb(248, 248, 250) 60%,
+    rgb(248, 248, 250) 78%,
+    rgb(248, 248, 250) 100%
   );
 }
 
 .navbar-brand {
-  color: rgb(255, 255, 255) !important;
+  color: rgb(3, 3, 3) !important;
 }
 
 .nav-link {
   font-size: 1.2rem !important;
-  color: #fff !important;
+  color: #030303 !important;
 }
 @media (max-width: 812px) {
   .nav-link {
@@ -90,7 +94,10 @@ a:hover {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 0 1000px rgba(155, 149, 149, 0.5); /* Light overlay */
+  filter: brightness(1.2) contrast(1.1); /* Increase brightness and contrast for a lighter feel */
+
+  
 }
 @media (max-width: 812px) {
   .bgimage {
@@ -101,8 +108,8 @@ a:hover {
 
 .bgimage h1 {
   font-size: 75px;
-  color: #e6af2d;
-  text-shadow: 4px 2px #000;
+  color: rgb(230, 151, 6);
+  text-shadow: 4px 2px #e7e4e4;
   margin-top: 360px;
   margin-bottom: 0;
   text-align: left;
@@ -121,7 +128,7 @@ a:hover {
   font-size: 22px;
   font-weight: 600;
   letter-spacing: 0.3rem;
-  color: rgb(247, 248, 249);
+  color: rgb(10, 10, 10);
   display: inline-block;
   font-family: "Red Hat Display", sans-serif;
 }
@@ -135,20 +142,20 @@ a:hover {
   font-size: 18px;
   font-weight: 400;
   margin-top: 0;
-  color: rgb(249, 239, 130);
+  color: rgb(230, 151, 6);
   font-family: "Red Hat Display", sans-serif;
 }
 
 .miner-fee-small {
   font-size: 14px;
   margin-top: 0;
-  color: rgb(255, 255, 253);
+  color: rgb(20, 20, 19);
   font-family: "Red Hat Display", sans-serif;
 }
 
 .bgimage sub-title {
   font-size: 1.1rem;
-  color: rgb(255, 255, 254);
+  color: rgb(22, 22, 21);
   margin-top: 0;
   margin-bottom: 10px;
   font-family: "Red Hat Display", sans-serif;
@@ -180,7 +187,7 @@ a:hover {
 }
 
 .fa-chevron-right[aria-expanded="true"] {
-  color: rgb(116, 116, 117);
+  color: rgb(219, 219, 228);
   -moz-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
@@ -190,7 +197,7 @@ a:hover {
   text-align: center;
   position: absolute;
   top: 730px;
-  color: rgba(253, 253, 253, 0.8);
+  color: rgb(237, 244, 247);
   left: 50%;
   margin-left: -7px;
   animation: upDownMove 1.2s ease-in-out infinite alternate;
@@ -244,24 +251,25 @@ a:hover {
 }
 
 .table {
-  color: #fff !important;
+  color: #161515 !important;
   font-weight: 500 !important;
 }
-
 .glassfilter {
-  background: rgba(75, 82, 114, 0.25);
-  box-shadow: 0 1px 16px 0 rgba(194, 185, 176, 0.37);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 25px 25px 0 0;
-  border: 2px solid rgb(74, 74, 74);
+  background: rgba(255, 255, 255, 0.7); /* Light, semi-transparent background */
+  box-shadow: 0 1px 16px 0 rgba(194, 185, 176, 0.25); /* Softer shadow for light mode */
+  backdrop-filter: blur(6px); /* Apply blur effect to background */
+  -webkit-backdrop-filter: blur(6px); /* Safari support */
+  border-radius: 25px 25px 0 0; /* Rounded corners */
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Lighter border for clean appearance */
+  color: #333; /* Dark text for better contrast in light mode */
 }
+
 
 thead {
   line-height: 1.5rem;
   font-size: 1.1rem;
   font-weight: 400;
-  color: rgb(220, 219, 135) !important;
+  color: rgb(230, 151, 6) !important;
   text-shadow: 1px 1px 1px #060606;
   /* background: rgb(70, 73, 83); */
 }
@@ -291,14 +299,14 @@ tr th:last-child {
 
 tbody tr:hover {
   cursor: pointer;
-  color: rgb(255, 253, 252) !important;
-  background-color: rgb(208, 208, 208, 0.2);
+  color: rgb(29, 27, 26) !important;
+  background-color: rgba(245, 243, 243, 0.2);
 }
 
 .col-expandable-content {
   border-bottom: 0;
   padding: 0 15px;
-  color: rgb(0, 0, 0);
+  color: rgb(248, 239, 239);
   background-color: rgba(153, 186, 244, 0.2);
 }
 
@@ -319,7 +327,7 @@ tbody tr:hover {
 }
 
 .pool-icons a {
-  color: rgb(243, 233, 217) !important;
+  color: rgb(8, 8, 8) !important;
   font-size: medium;
 }
 
@@ -354,7 +362,7 @@ tbody tr:hover {
   -webkit-backdrop-filter: blur(6px);
   border-radius: 25px;
   border: 1px solid rgba(130, 13, 13, 0.18);
-  background-color: #fff;
+  background-color: #131111;
   display: flex;
   flex: 1;
   margin: 0 1rem;
@@ -394,7 +402,7 @@ tbody tr:hover {
   box-sizing: border-box;
   border-radius: 0 5px 0 0;
   font-size: 0.95rem;
-  color: rgb(249, 252, 252) !important;
+  color: rgb(13, 14, 14) !important;
   background: rgb(68, 110, 130);
   font-family: "Red Hat Display", sans-serif !important;
 }
@@ -412,7 +420,7 @@ tbody tr:hover {
   max-height: 100%;
   object-fit: cover;
   transition: all 0.2s linear;
-  border-bottom: 1px solid rgb(222, 218, 218);
+  border-bottom: 1px solid rgb(2, 2, 2);
 }
 
 .cards__item__img:hover {
@@ -424,7 +432,7 @@ tbody tr:hover {
 }
 
 .cards__item__text {
-  color: #000;
+  color: #faf7f7;
   font-size: 1rem;
 }
 @media (max-width: 812px) {
@@ -447,15 +455,15 @@ tbody tr:hover {
 }
 
 .site-footer {
-  background-color: #26272b;
+  background-color: #fff;
   padding: 45px 0 20px;
   font-size: 15px;
   line-height: 24px;
-  color: #737373;
+  color: #0c0b0b;
 }
 
 .site-footer hr {
-  border-top-color: #bbb;
+  border-top-color: #fdf3f3;
   opacity: 0.5;
 }
 
@@ -464,7 +472,7 @@ tbody tr:hover {
 }
 
 .site-footer h6 {
-  color: #fff;
+  color: #080606;
   font-size: 16px;
   text-transform: uppercase;
   margin-top: 5px;
@@ -472,7 +480,7 @@ tbody tr:hover {
 }
 
 .site-footer a {
-  color: #737373;
+  color: #fff;
 }
 
 .site-footer a:hover {
@@ -490,7 +498,7 @@ tbody tr:hover {
 }
 
 .footer-links a {
-  color: #737373;
+  color: #fff;
 }
 
 .footer-links a:active,
@@ -510,7 +518,7 @@ tbody tr:hover {
 .address {
   margin-top: 1px;
   margin-bottom: 1px;
-  color: #fff;
+  color: #080606;
 }
 
 .site-footer .social-icons a {
@@ -520,7 +528,7 @@ tbody tr:hover {
   margin-left: 6px;
   margin-right: 0;
   border-radius: 100%;
-  background-color: #33353d;
+  background-color: #fff;
 }
 
 .copyright-text {
@@ -555,7 +563,7 @@ tbody tr:hover {
 .social-icons li.title {
   margin-right: 15px;
   text-transform: uppercase;
-  color: #96a2b2;
+  color: #fff;
   font-weight: 700;
   font-size: 13px;
 }
@@ -579,7 +587,7 @@ tbody tr:hover {
 .social-icons a:active,
 .social-icons a:focus,
 .social-icons a:hover {
-  color: #fff;
+  color: #080606;
   background-color: #29aafe;
 }
 
@@ -642,23 +650,24 @@ tbody tr:hover {
 .fa-support {
   margin-bottom: 5px;
   -webkit-text-stroke: 1px rgba(255, 246, 246, 0.5);
-  -webkit-text-fill-color: rgb(220, 178, 23);
+  -webkit-text-fill-color: rgb(230, 151, 6)
 }
 
 .fa-lock {
   margin-bottom: 5px;
   -webkit-text-stroke: 1px rgba(255, 246, 246, 0.5);
-  -webkit-text-fill-color: rgb(220, 178, 23);
+  -webkit-text-fill-color: rgb(230, 151, 6)
 }
 
 .fa-eye {
   margin-bottom: 5px;
   -webkit-text-stroke: 1px rgba(255, 246, 246, 0.5);
-  -webkit-text-fill-color: rgb(220, 178, 23);
+  -webkit-text-fill-color: rgb(230, 151, 6)
 }
 
 .fa-mobile {
   margin-bottom: 5px;
   -webkit-text-stroke: 1px rgba(255, 246, 246, 0);
-  -webkit-text-fill-color: rgb(220, 178, 23);
+  -webkit-text-fill-color: rgb(230, 151, 6)
 }
+

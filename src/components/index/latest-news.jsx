@@ -7,7 +7,7 @@ export function LatestNews({ news }) {
   return (
     <div className="container mx-auto mt-3">
       <center>
-        <h1 className="display-5">Latest News</h1>
+        <h1 className="display-5">Latest hoijij</h1>
       </center>
       <Row>
         {news.map((n) => (
